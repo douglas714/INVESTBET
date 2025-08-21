@@ -1,15 +1,16 @@
 // CÓDIGO CORRIGIDO E ATUALIZADO PARA: src/App.jsx
-// Este arquivo integra as versões melhoradas do Login, Registro e Dashboard.
+// Este arquivo integra as versões melhoradas do Login, Registro e Dashboard,
+// usando os nomes de arquivo originais (Dashboard.jsx, LoginPage.jsx, RegisterPage.jsx).
 
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { supabase } from './main'; // Certifique-se de que `supabase` está configurado corretamente em main.jsx
 
-// Importe suas páginas. Use as versões '_improved' ou '_simplified' que foram fornecidas.
-// Renomeie-as para os nomes originais ou ajuste os caminhos conforme sua preferência.
-import Dashboard from './components/Dashboard_simplified'; // Usando a versão simplificada do Dashboard
-import RegisterPage from './components/RegisterPage_improved'; // Usando a versão melhorada do Registro
-import LoginPage from './components/LoginPage_improved'; // Usando a versão melhorada do Login
+// Importe suas páginas. Certifique-se de que os arquivos Dashboard.jsx, LoginPage.jsx e RegisterPage.jsx
+// na sua pasta 'components' contenham o código que eu forneci nas versões '_simplified' e '_improved'.
+import Dashboard from './components/Dashboard'; // Importa Dashboard.jsx (com o conteúdo simplificado)
+import RegisterPage from './components/RegisterPage'; // Importa RegisterPage.jsx (com o conteúdo melhorado)
+import LoginPage from './components/LoginPage'; // Importa LoginPage.jsx (com o conteúdo melhorado)
 import ContractPage from './components/ContractPage'; // Mantenha se você ainda usa esta página
 import AdminPanel from './components/AdminPanel_fixed'; // Mantenha se você ainda usa esta página
 
