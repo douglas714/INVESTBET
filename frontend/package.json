@@ -37,10 +37,7 @@
     "@radix-ui/react-toggle": "^1.1.8",
     "@radix-ui/react-toggle-group": "^1.1.9",
     "@radix-ui/react-tooltip": "^1.2.6",
-<<<<<<< HEAD
-=======
     "@supabase/supabase-js": "^2.55.0",
->>>>>>> 68048ee0f45367395ea451b64aeb27cb26493f1f
     "@tailwindcss/vite": "^4.1.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -62,10 +59,7 @@
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.7",
     "vaul": "^1.1.2",
-<<<<<<< HEAD
-=======
     "vite-plugin-csp": "^1.1.2",
->>>>>>> 68048ee0f45367395ea451b64aeb27cb26493f1f
     "zod": "^3.24.4"
   },
   "devDependencies": {
