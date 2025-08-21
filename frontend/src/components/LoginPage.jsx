@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { supabase } from '../main'; // Importa a instância do Supabase
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,34 +11,42 @@ import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, LogIn, Smartphone, Shield, TrendingUp } from 'lucide-react';
 import logoImage from '../assets/investbet-logo.jpg';
 
-const LoginPage = ({ onLogin }) => {
-  const [credentials, setCredentials] = useState({ email: '', password: '' });
+const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (field, value) => {
-    setCredentials(prev => ({ ...prev, [field]: value }));
-    if (error) setError('');
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!credentials.email || !credentials.password) {
-      setError('Por favor, preencha todos os campos');
+    setError('');
+
+    if (!email || !password) {
+      setError('Por favor, preencha todos os campos.');
       return;
     }
 
     setLoading(true);
-    setError('');
-    
-    // Simular login para teste
-    setTimeout(() => {
+    try {
+      const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
+      if (authError) throw authError;
+      
+      // Redireciona para o dashboard ou para a página de contrato se necessário
+      // A lógica de redirecionamento principal está no App.jsx
+      navigate('/dashboard'); 
+
+    } catch (err) {
+      console.error('Erro de login:', err);
+      if (err.message.includes('Invalid login credentials')) {
+        setError('Credenciais inválidas. Verifique seu email e senha.');
+      } else {
+        setError(err.message || 'Ocorreu um erro inesperado. Tente novamente.');
+      }
+    } finally {
       setLoading(false);
-      onLogin();
-      navigate('/dashboard');
-    }, 1500);
+    }
   };
 
   // SVG URL-encoded para o background pattern
@@ -123,8 +132,8 @@ const LoginPage = ({ onLogin }) => {
                       name="email"
                       type="email"
                       placeholder="seu@email.com"
-                      value={credentials.email}
-                      onChange={(e) => handleChange('email', e.target.value)}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       required
                       disabled={loading}
                       autoComplete="email"
@@ -144,8 +153,8 @@ const LoginPage = ({ onLogin }) => {
                       name="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Digite sua senha"
-                      value={credentials.password}
-                      onChange={(e) => handleChange('password', e.target.value)}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       required
                       disabled={loading}
                       autoComplete="current-password"
@@ -166,7 +175,7 @@ const LoginPage = ({ onLogin }) => {
                 {/* Login Button */}
                 <Button
                   type="submit"
-                  disabled={loading || !credentials.email || !credentials.password}
+                  disabled={loading || !email || !password}
                   className="w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {loading ? (
