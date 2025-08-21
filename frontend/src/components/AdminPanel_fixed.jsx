@@ -234,8 +234,8 @@ const AdminPanel = () => {
 
   const filteredUsers = users.filter(user => {
     const matchesSearch = user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.username?.toLowerCase().includes(searchTerm.toLowerCase())
+                          user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          user.username?.toLowerCase().includes(searchTerm.toLowerCase())
     
     const matchesFilter = filterStatus === 'all' || user.status === filterStatus
     
@@ -316,8 +316,8 @@ const AdminPanel = () => {
           }`}>
             <div className="flex items-center space-x-2">
               {message.includes('✅') ? <CheckCircle className="h-5 w-5" /> :
-               message.includes('⚠️') ? <AlertCircle className="h-5 w-5" /> :
-               <AlertCircle className="h-5 w-5" />}
+                message.includes('⚠️') ? <AlertCircle className="h-5 w-5" /> :
+                <AlertCircle className="h-5 w-5" />}
               <span>{message}</span>
             </div>
           </div>
@@ -646,7 +646,3 @@ const AdminPanel = () => {
 }
 
 export default AdminPanel
-<<<<<<< HEAD
-
-=======
->>>>>>> 68048ee0f45367395ea451b64aeb27cb26493f1f
