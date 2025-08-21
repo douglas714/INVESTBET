@@ -40,6 +40,11 @@ const LoginPage = ({ onLogin }) => {
     }, 1500);
   };
 
+  // SVG URL-encoded para o background pattern
+  const svgPattern = encodeURIComponent(
+    `<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="#ffffff" fill-opacity="0.1"><circle cx="30" cy="30" r="2"/></g></g></svg>`
+   );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 relative overflow-hidden">
       {/* Background Pattern */}
@@ -47,7 +52,7 @@ const LoginPage = ({ onLogin }) => {
         <div 
           className="absolute top-0 left-0 w-full h-full"
           style={{
-            backgroundImage: `url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E' )`,
+            backgroundImage: `url('data:image/svg+xml,${svgPattern}')`,
             backgroundSize: '60px 60px'
           }}
         ></div>
